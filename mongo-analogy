@@ -1,0 +1,20 @@
+Database
+    like Excel Workbook
+
+Collection
+    like Excel Worksheet
+
+Document
+    like Row
+
+
+
+[
+    { "firstName": "Steve", "lastName": "Jobs","email": "steve@apple.com" },
+    { "firstName": "Steve", "lastName": "Wozniak","email": "steve2@apple.com" }
+]
+
+[
+    { "model": "iPhone 13", "price": "1000 USD" }
+    { "model": "iPad 10", "price": "500 USD" }
+]
