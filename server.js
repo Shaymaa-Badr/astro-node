@@ -1,16 +1,35 @@
 // Import the express function
 const express = require('express');
 
+// Import and run dotenv
+require('dotenv').config();
+
 // Import body-parser to read POST request
 const bodyParser = require('body-parser');
 
 // Import cors for Cross-Origin Resource Sharing
 const cors = require('cors');
 
+// Import express-form data
+const expressFormData = require('express-form-data');
+
+
+// Import Cloudinary for images
+const cloudinary = require('cloudinary').v2;
+
+cloudinary.config(
+    {
+        cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+        api_key: process.env.CLOUDINARY_API_KEY,
+        api_secret: process.env.CLOUDINARY_API_SECRET,
+    }
+);
+
+
 // Import mongoose to connect to MongoDB
 const mongoose = require('mongoose');
 const userRoutes = require('./routes/user-routes.js');
-const productRoutes = require('./routes/product-routes.js')
+const productRoutes = require('./routes/product-routes.js');
 
 // Create server object by calling express
 const server = express();
@@ -24,8 +43,8 @@ server.use(bodyParser.json());
 // Configure express for CORS
 server.use(cors());
 
-// dotenv
-require('dotenv').config()
+// Configure express for Express Form Data
+server.use( expressFormData.parse() );
 
 
 // Connect to MongoDB
@@ -52,22 +71,22 @@ mongoose
 // This is a GET route
 server.get('/',
     function(req, res) {
-        res.send("Welcome!");
+        res.send("Mission Accomplished 2!");
     }
 );
 
-// User routes
+
 server.use(
     '/user', userRoutes
 );
-// Product routes
+
 server.use(
     '/product', productRoutes
 );
+
 server.listen(
     process.env.PORT,
     function() {
-        console.log(`Server is running on 
-        http://localhost:${process.env.PORT}`)
+        console.log(`Server is running on http://localhost:${process.env.PORT}`)
     }
 );

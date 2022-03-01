@@ -3,14 +3,14 @@ const router = express.Router();
 
 const ProductModel = require('../models/ProductModel.js');
 
-router.post('/create',                   // http://www.benjamin.com/products/                   
+router.post('/create',                   // http://www.localhost3001.com/product/                   
     function(req, res) {
 
         const document = {
             "name": req.body.name,
-            "description": req.body.description,
             "price": req.body.price,
             "category": req.body.category,
+            "description": req.body.description,
         };
 
         ProductModel
